@@ -24,3 +24,6 @@ def signup(request):
         return render(request,'signup.html')
     else:
         return HttpResponse('Recived Post Request')
+    
+def home():
+    print("test")

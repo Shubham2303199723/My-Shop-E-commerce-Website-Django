@@ -8,25 +8,31 @@
             <form action="/signup/" method="post">
                 {% csrf_token %}
                 <h3 class="alert alert-light border rounded">Create An Account</h3>
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{error}}
+                    </div>
+                {% endif %}
+                
                 <div class="col-lg-8 mx-auto pt-4">
-                    <label for="" class="form-label">Email address</label>
-                    <input type="email" class="form-control" name="email" placeholder="example@gmail.com">
-                </div>
-                <div class="col-lg-8 mx-auto">
-                    <label for="" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Enter Your Password">
-                </div>
-                <div class="col-lg-8 mx-auto">
                     <label for="" class="form-label">First Name</label>
                     <input type="text" class="form-control" name="firstname" placeholder="First Name">
                 </div>
                 <div class="col-lg-8 mx-auto">
                     <label for="" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" name="lastname"placeholder="last Name">
+                    <input type="text" class="form-control" name="lastname" placeholder="lastname">
+                </div>
+                <div class="col-lg-8 mx-auto">
+                    <label for="" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Example@gmail.com">
+                </div>
+                <div class="col-lg-8 mx-auto">
+                    <label for="" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password"placeholder="********">
                 </div>
                 <div class="col-lg-8 mx-auto">
                     <label for="" class="form-label">Phone No.</label>
-                    <input type="text" class="form-control" name="phoneno" placeholder="Enter Your Phone No.">
+                    <input type="text" class="form-control" name="phone" placeholder="Enter Your Phone No.">
                 </div>
                 <div class="col-lg-8 mx-auto pt-4 pb-4">
                     <input class="btn btn-sm btn-info" type="submit" value="Create An Account">

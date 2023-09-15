@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content%}
+
+{% load cart %}
 <div class="container text-center">
   <div class="row">
     <!--Filter-->
-
     <div class="col-lg-3 mx-auto">
       <div class="list-group">
         <a href="/" class="list-group-item">All Products</a>
@@ -12,10 +13,7 @@
         <a href="/?category={{category.id}}" class="list-group-item">{{category.name}}</a>
         {% endfor %}
       </div>
-      
     </div>
-
-
     <div id="products" class="col-lg-9 mx-auto">
       <div class="row mx-auto">
         {% for product in products %}        
@@ -23,13 +21,22 @@
                 <img src="{{product.image.url}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
-                    <p class="card-text"><br>{{product.price}}<br></p>
-                    <form action="" method="POST">
-                      {% csrf_token %}
-                      <input type="text" name="product" value="{{product.id}}">
-                      <input type="submit" class="btn btn-primary" value="Add to Cart">
-                    </form>
+                    <p class="card-text"><br><b>{{product.price}} Rs</b><br></p>
+                    {{ product | is_in_cart:request.session.cart }}              
                 </div>
+                <div class="card-footer p-0 row no-gutter">
+                  <form action="" method="POST" class="btn-block">
+                    {% csrf_token %}
+                    <input hidden type="text" name='product' value='{{product.id}}'>
+                    <input type="submit" class="btn btn-primary btn-block" value="Add to Cart">
+                  </form>
+                  <div class="row" >
+                    <input type="text" value=" - " class="col-2 btn btn-block btn-secondary">
+                    <div class="text-center col">2 in Cart</div>
+                    <input type="text" value=" - " class="col-2 btn btn-block btn-secondary">
+                  </div>
+                </div>
+                
             </div>
         {% endfor%}
       </div>

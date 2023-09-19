@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from Store.models.product import product
 from Store.models.category import category
 from django.views import View
-from django.http import HttpResponse
 
 
 class Index(View):

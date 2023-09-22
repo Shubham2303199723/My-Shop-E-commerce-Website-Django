@@ -4,9 +4,7 @@ from .customer import Customer
 import datetime
 class Orders(models.Model):
     product = models.ForeignKey(product , on_delete=models.CASCADE)
-
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
     quantity = models.IntegerField(default=1)
     price = models.IntegerField()
     address = models.CharField(max_length=50, default='', blank=True)
@@ -15,3 +13,7 @@ class Orders(models.Model):
 
     def PlaceOrder(self):
         self.save()
+
+    @staticmethod
+    def get_orders_by_customer(customer_id):
+        return Orders.objects.filter(customer = customer_id)

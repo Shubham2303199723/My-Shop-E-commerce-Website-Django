@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from .views import home, login, signup, cart
 from .views.login import Logout
+from .views.checkout import CheckOut
+from .views.orders import OrderCart
 
 
 urlpatterns = [
@@ -10,4 +12,6 @@ urlpatterns = [
     path ('login/', login.Login.as_view(), name='login'),
     path('logout/', Logout, name='logout'),
     path('cart/', cart.Cart.as_view(), name='cart'),
+    path('checkout', CheckOut.as_view(), name='checkout'),
+    path('orders', OrderCart.as_view(), name='orders'),
 ]

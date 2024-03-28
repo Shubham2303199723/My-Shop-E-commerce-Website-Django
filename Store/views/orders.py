@@ -6,4 +6,5 @@ class OrderCart(View):
     def get(self, request):
         customer = request.session.get('customer')
         orders = Orders.get_orders_by_customer(customer)
-        return render (request, 'orders.html', {'order': orders})
+        print(orders)
+        return render (request, 'orders.html', {'orders': orders})

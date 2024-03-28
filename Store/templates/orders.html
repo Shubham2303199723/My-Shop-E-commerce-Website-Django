@@ -15,9 +15,11 @@
                     <th>Sno.</th>
                     <th>Image</th>
                     <th>Product</th>
+                    <th>Date</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,8 +29,14 @@
                     <td><img style="height: 80px;" class="rounded-circle" src="{{order.product.image.url}}" alt=""></td>
                     <td>{{order.product.name}}</td>
                     <td>{{order.price|currency}}</td>
+                    <td>{{order.date}}</td>
                     <td>{{order.quantity}}</td>
-                    <td>{{order.quantity|multiply:order.Price|currency}}</td>
+                    <td>{{order.quantity|multiply:order.price|currency}}</td>
+                    {% if order.status %}
+                    <td><span class="badge bg-success">Completed</span></td>
+                    {% else %}
+                    <td><span class="badge bg-primary">Pending</span></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
